@@ -7,10 +7,12 @@ using System.Web.Mvc;
 
 namespace LabMVC.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : LogadoController
     {
         public ActionResult Index()
         {
+            if (!Logado()) return null;
+
             ViewBag.clientes = Cliente.Todos();
             //ViewData["clientes ssds"] = Cliente.Todos();
             return View(new

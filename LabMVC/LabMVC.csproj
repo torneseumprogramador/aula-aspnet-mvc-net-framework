@@ -121,13 +121,17 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\LogadoController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DTO\LoginDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cidade.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Estado.cs" />
+    <Compile Include="ModelViews\ErroModelView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +172,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Clientes\Index.cshtml" />
     <Content Include="Views\Clientes\HtmlPuro.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
