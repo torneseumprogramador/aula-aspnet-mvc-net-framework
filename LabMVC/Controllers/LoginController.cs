@@ -1,6 +1,7 @@
 ﻿using LabMVC.DTO;
 using LabMVC.ModelViews;
 using LabWebForms.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,17 @@ namespace LabMVC.Controllers
 
             if(loginDTO.Login == "cah" && loginDTO.Senha == "123456")
             {
-                Session["usuario_logado"] = loginDTO;
+                var cookie = new HttpCookie("usuario_logado");
+
+                string encryptedText = LabMVC.Cripto.Encript.Encrypt(JsonConvert.SerializeObject(loginDTO), "12188282sjjabqghhnnwqwqw");
+
+                cookie.Value = encryptedText;
+                cookie.Expires = DateTime.Now.AddDays(1);
+                cookie.HttpOnly = true;
+                Response.Cookies.Add(cookie);
+
+                //Session["usuario_logado"] = loginDTO; 
+
                 return Redirect("/");
             }
 

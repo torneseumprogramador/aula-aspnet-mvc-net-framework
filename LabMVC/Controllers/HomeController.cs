@@ -1,4 +1,5 @@
-﻿using LabWebForms.Models;
+﻿using LabMVC.Filtros;
+using LabWebForms.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,12 @@ namespace LabMVC.Controllers
 {
     public class HomeController : LogadoController
     {
+        [AutenticadoFilter]
         public ActionResult Index()
         {
-            if (!Logado()) return null;
+            // if (!Logado()) return null;
+
+            // return new HttpUnauthorizedResult();
 
             ViewBag.clientes = Cliente.Todos();
             //ViewData["clientes ssds"] = Cliente.Todos();

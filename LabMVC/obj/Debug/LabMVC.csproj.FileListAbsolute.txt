@@ -61,3 +61,6 @@ C:\Users\Lamartine\source\repos\LabMVC\LabMVC\obj\Debug\LabMVC.csproj.CoreCompil
 C:\Users\Lamartine\source\repos\LabMVC\LabMVC\obj\Debug\LabMVC.csproj.CopyComplete
 C:\Users\Lamartine\source\repos\LabMVC\LabMVC\obj\Debug\LabMVC.dll
 C:\Users\Lamartine\source\repos\LabMVC\LabMVC\obj\Debug\LabMVC.pdb
+C:\Users\Lamartine\source\repos\LabMVC\LabMVC\bin\JWT.dll
+C:\Users\Lamartine\source\repos\LabMVC\LabMVC\bin\JWT.pdb
+C:\Users\Lamartine\source\repos\LabMVC\LabMVC\bin\JWT.xml
