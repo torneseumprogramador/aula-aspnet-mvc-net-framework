@@ -21,6 +21,7 @@ namespace AspNetFrameworkMVC.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public void Criar()
         {
             DateTime data;
@@ -28,7 +29,7 @@ namespace AspNetFrameworkMVC.Controllers
             Pagina pagina = new Pagina();
             pagina.Nome = Request["nome"];
             pagina.Data = data;
-            pagina.Conteudo = Request["conteudo"];
+            pagina.Conteudo =  Request["conteudo"];
             pagina.Save();
             Response.Redirect("/paginas");
 

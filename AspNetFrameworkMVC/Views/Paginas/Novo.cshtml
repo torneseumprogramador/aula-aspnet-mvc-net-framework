@@ -14,8 +14,16 @@
             <label for="data">Data:</label>
             <input type="datetime" class="form-control" id="data" name="data">
         </div>
+        @*<div class="form-group">
+            <label for="conteudo">Conteudo:</label>
+            <textarea id="conteudo" name="conteudo" class="form-control"></textarea>
+        </div>*@
         <div class="form-group">
             <label for="conteudo">Conteudo:</label>
+
+            <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=uy71wzu7fhuzxf2n0ftajhb5t2vv8yiyha91wvyrgjxfmjpt"></script>
+            <script>tinymce.init({ selector: 'textarea' });</script>
+
             <textarea id="conteudo" name="conteudo" class="form-control"></textarea>
         </div>
         <button type="submit" class="btn btn-default">Salvar</button>
