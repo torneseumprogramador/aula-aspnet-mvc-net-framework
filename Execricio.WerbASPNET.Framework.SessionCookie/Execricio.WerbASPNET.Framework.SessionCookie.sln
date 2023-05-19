@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Execricio.WerbASPNET.Framework.SessionCookie", "Execricio.WerbASPNET.Framework.SessionCookie.csproj", "{D9CAFCE5-2F98-4CCA-8B73-940161C38082}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D9CAFCE5-2F98-4CCA-8B73-940161C38082}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9CAFCE5-2F98-4CCA-8B73-940161C38082}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9CAFCE5-2F98-4CCA-8B73-940161C38082}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9CAFCE5-2F98-4CCA-8B73-940161C38082}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {09DD3530-4350-4F75-A6C5-789110A3C473}
+	EndGlobalSection
+EndGlobal
