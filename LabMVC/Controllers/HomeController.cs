@@ -13,17 +13,8 @@ namespace LabMVC.Controllers
         [AutenticadoFilter]
         public ActionResult Index()
         {
-            // if (!Logado()) return null;
-
-            // return new HttpUnauthorizedResult();
-
-            ViewBag.clientes = Cliente.Todos();
-            //ViewData["clientes ssds"] = Cliente.Todos();
-            return View(new
-            {
-                Clientes = Cliente.Todos(),
-                Mensagem = "oi"
-            });
+            ViewBag.Title = "Home";
+            return View();
         }
 
         public ActionResult About()
