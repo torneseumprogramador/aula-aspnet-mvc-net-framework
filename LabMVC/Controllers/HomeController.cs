@@ -16,12 +16,12 @@ namespace LabMVC.Controllers
             // if (!Logado()) return null;
 
             // return new HttpUnauthorizedResult();
-
-            ViewBag.clientes = Cliente.Todos();
+            var clientes = Cliente.Todos();
+            ViewBag.clientes = clientes;
             //ViewData["clientes ssds"] = Cliente.Todos();
             return View(new
             {
-                Clientes = Cliente.Todos(),
+                Clientes = clientes,
                 Mensagem = "oi"
             });
         }

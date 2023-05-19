@@ -138,4 +138,7 @@ C:\Edu\Aulas\UpSkilling\aula-aspnet-mvc-net-framework\LabMVC\bin\System.Data.SQL
 C:\Edu\Aulas\UpSkilling\aula-aspnet-mvc-net-framework\LabMVC\bin\EntityFramework.xml
 C:\Edu\Aulas\UpSkilling\aula-aspnet-mvc-net-framework\LabMVC\bin\EntityFramework.SqlServer.xml
 C:\Edu\Aulas\UpSkilling\aula-aspnet-mvc-net-framework\LabMVC\bin\System.Data.SQLite.xml
-C:\Edu\Aulas\UpSkilling\aula-aspnet-mvc-net-framework\LabMVC\bin\DbSqLite\DbLabMVC.db
+C:\Edu\Aulas\UpSkilling\aula-aspnet-mvc-net-framework\LabMVC\bin\DbLabMVC.db
+C:\Edu\Aulas\UpSkilling\aula-aspnet-mvc-net-framework\LabMVC\bin\Dapper.dll
+C:\Edu\Aulas\UpSkilling\aula-aspnet-mvc-net-framework\LabMVC\bin\Dapper.SqlBuilder.dll
+C:\Edu\Aulas\UpSkilling\aula-aspnet-mvc-net-framework\LabMVC\bin\Dapper.xml
