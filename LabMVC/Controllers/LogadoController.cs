@@ -13,7 +13,7 @@ namespace LabMVC.Controllers
         {
             if (Session["usuario_logado"] == null)
             {
-                Response.Redirect("/login");
+                Response.Redirect("/login/index");
                 return false;
             }
 

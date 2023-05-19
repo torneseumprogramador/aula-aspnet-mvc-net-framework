@@ -24,6 +24,12 @@ namespace LabMVC
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "usuario_cadastro",
+                url: "{controler}/{action}/{id}",
+                defaults: new { controller = "Usuarios", action = "Form", id = UrlParameter.Optional }
+            );
         }
     }
 }
