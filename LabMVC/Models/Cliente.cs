@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 
 namespace LabWebForms.Models
 {
@@ -15,11 +15,11 @@ namespace LabWebForms.Models
         public Cidade Cidade { get; set; }
 
         public void Salvar()
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+        {           
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 string query = "INSERT INTO Clientes (Nome, Telefone, id_cidade) VALUES (@Nome, @Telefone, @idCidade)";
-                SqlCommand command = new SqlCommand(query, connection);
+                SQLiteCommand command = new SQLiteCommand(query, connection);
                 command.Parameters.AddWithValue("@Nome", Nome);
                 command.Parameters.AddWithValue("@Telefone", Telefone);
                 command.Parameters.AddWithValue("@idCidade", Cidade.Id);
@@ -32,13 +32,13 @@ namespace LabWebForms.Models
         public static List<Cliente> Todos()
         {
             List<Cliente> clientes = new List<Cliente>();
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 string query = "SELECT Id, Nome, id_cidade, Telefone FROM Clientes";
-                SqlCommand command = new SqlCommand(query, connection);
+                SQLiteCommand command = new SQLiteCommand(query, connection);
 
                 connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
+                SQLiteDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
                     Cliente cliente = new Cliente

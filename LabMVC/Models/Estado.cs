@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 
 namespace LabWebForms.Models
 {
@@ -22,15 +22,15 @@ namespace LabWebForms.Models
         {
             List<Estado> estados = new List<Estado>();
 
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Open();
 
                 string sql = "SELECT id, nome, uf FROM Estados";
 
-                using (SqlCommand command = new SqlCommand(sql, connection))
+                using (SQLiteCommand command = new SQLiteCommand(sql, connection))
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    using (SQLiteDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
