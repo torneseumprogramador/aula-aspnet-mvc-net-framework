@@ -14,22 +14,30 @@
             <div class="login-form">
                 <form action="/login/logar" method="post">
                     <div class="form-group">
-                        <label>User Name</label>
-                        <input type="text" class="form-control" name="login" placeholder="User Name">
+                        <label>Login</label>
+                        <input type="text" class="form-control" name="login" placeholder="Login">
                     </div>
                     <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" name="senha" class="form-control" placeholder="Password">
+                        <label>Senha</label>
+                        <input type="password" name="senha" class="form-control" placeholder="Senha">
                     </div>
 
                     @if (Model != null && !string.IsNullOrEmpty(((ErroModelView)Model).Mensagem))
                     {
-                    <div class="alert alert-danger" role="alert">
-                        @(((ErroModelView)Model).Mensagem)
-                    </div>
+                        <div class="alert alert-danger" role="alert">
+                            @(((ErroModelView)Model).Mensagem)
+                        </div>
                     }
 
-                    <button type="submit" class="btn btn-black" style="border: 1px solid #c0c0c0;">Login</button>
+                    @if (ViewBag.mensagem != null && !string.IsNullOrEmpty(ViewBag.mensagem))
+                    {
+                        <div class="alert alert-success" role="alert">
+                            @ViewBag.mensagem
+                        </div>
+                    }
+
+                    <button type="submit" class="btn btn-success" style="border: 1px solid #c0c0c0;">Entrar</button>
+                    <a href="@Url.Action("Form", "Usuarios")" class="btn btn-primary">Novo usuário</a>
                 </form>
             </div>
         </div>

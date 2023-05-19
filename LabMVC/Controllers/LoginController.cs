@@ -1,10 +1,12 @@
 ﻿using LabMVC.DTO;
+using LabMVC.Models;
 using LabMVC.ModelViews;
 using LabWebForms.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,17 +14,20 @@ namespace LabMVC.Controllers
 {
     public class LoginController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string mensagem = null)
         {
+            ViewBag.mensagem = mensagem;
             return View();
         }
 
         public ActionResult Logar(LoginDTO loginDTO)
         {
-            if (loginDTO == null || string.IsNullOrEmpty(loginDTO.Login) || string.IsNullOrEmpty(loginDTO.Senha)) 
+            List<Usuario> usuarios = Usuario.Todos().Where(u => u.Login == loginDTO.Login && u.Senha == loginDTO.Senha).ToList();
+
+            if (loginDTO == null || string.IsNullOrEmpty(loginDTO.Login) || string.IsNullOrEmpty(loginDTO.Senha) || usuarios.Count == 0) 
                 return View("index", new ErroModelView { Mensagem = "Login ou senha inválida" });
 
-            if(loginDTO.Login == "cah" && loginDTO.Senha == "123456")
+            if(usuarios.Count() > 0 && usuarios[0].Login == loginDTO.Login)
             {
                 var cookie = new HttpCookie("usuario_logado");
 
@@ -35,10 +40,20 @@ namespace LabMVC.Controllers
 
                 //Session["usuario_logado"] = loginDTO; 
 
-                return Redirect("/");
+                return RedirectToAction("Index", "Home", new { mensagem = "Bem vindo ao sistema" });
             }
 
             return View("index", new ErroModelView { Mensagem = "Login ou senha inválida" });
         }
+
+        public ActionResult Logout()
+        {
+            //Matar sessão
+            Response.Cookies.Remove("usuario_logado");
+
+            return RedirectToAction("Index", "Login", new { mensagem = ViewBag.mensagem });
+        }
     }
+
+    
 }

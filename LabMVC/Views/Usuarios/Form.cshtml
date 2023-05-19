@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Cadastro";
+}
+@using LabWebForms.Models;
+@using LabMVC.ModelViews;
+
+<div class="" style="height: 390px;">
+    <h1>Cadastro de novo usuário</h1>
+
+    <hr />
+
+    <div class="main">
+        <div class="container-fluid">
+
+            <form action="@Url.Action("Cadastrar", "Usuarios")" method="POST" class="mb-4">
+                <div class="row">
+                    <div class="col-auto">
+                        <label>Nome:</label>
+                        <input type="text" name="nome" class="form-control" required />
+                    </div>
+                    <div class="col-auto">
+                        <label>Login:</label>
+                        <input type="text" name="login" class="form-control" required />
+                    </div>
+                    <div class="col-auto">
+                        <label>E-mail:</label>
+                        <input type="email" name="email" class="form-control" required />
+                    </div>
+                    <div class="col-auto">
+                        <label>Senha:</label>
+                        <input type="password" name="senha" class="form-control" required />
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-auto">
+                        <input type="submit" value="Cadastrar" class="btn btn-primary" />
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+</div>

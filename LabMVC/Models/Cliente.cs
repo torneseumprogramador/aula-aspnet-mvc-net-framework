@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -16,10 +17,10 @@ namespace LabWebForms.Models
 
         public void Salvar()
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
             {
                 string query = "INSERT INTO Clientes (Nome, Telefone, id_cidade) VALUES (@Nome, @Telefone, @idCidade)";
-                SqlCommand command = new SqlCommand(query, connection);
+                NpgsqlCommand command = new NpgsqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Nome", Nome);
                 command.Parameters.AddWithValue("@Telefone", Telefone);
                 command.Parameters.AddWithValue("@idCidade", Cidade.Id);
@@ -32,13 +33,13 @@ namespace LabWebForms.Models
         public static List<Cliente> Todos()
         {
             List<Cliente> clientes = new List<Cliente>();
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
             {
                 string query = "SELECT Id, Nome, id_cidade, Telefone FROM Clientes";
-                SqlCommand command = new SqlCommand(query, connection);
+                NpgsqlCommand command = new NpgsqlCommand(query, connection);
 
                 connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
+                NpgsqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
                     Cliente cliente = new Cliente
