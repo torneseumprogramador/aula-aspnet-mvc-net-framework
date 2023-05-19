@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MVC_GerenciadorDeConteudo.Controllers
+namespace AspNetFrameworkMVC.Controllers
 {
     public class CepController : Controller
     {
