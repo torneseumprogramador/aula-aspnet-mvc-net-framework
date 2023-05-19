@@ -136,6 +136,7 @@
     <Compile Include="Models\Cidade.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Estado.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="ModelViews\ErroModelView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
