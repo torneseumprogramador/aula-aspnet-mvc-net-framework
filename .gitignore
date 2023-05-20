@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/visualstudio,csharp,aspnetcore
-# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudio,csharp,aspnetcore
+# Created by https://www.toptal.com/developers/gitignore/api/csharp,aspnetcore,visualstudio
+# Edit at https://www.toptal.com/developers/gitignore?templates=csharp,aspnetcore,visualstudio
 
 ### ASPNETCore ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -704,4 +704,4 @@ FodyWeavers.xsd
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
-# End of https://www.toptal.com/developers/gitignore/api/visualstudio,csharp,aspnetcore
+# End of https://www.toptal.com/developers/gitignore/api/csharp,aspnetcore,visualstudio
