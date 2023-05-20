@@ -28,6 +28,9 @@ namespace Execricio.WerbASPNET.Framework.SessionCookie.Controllers
                 if (loginValido)
                 {
                     TempData["User"] = model.Username;
+
+                    Session["Login"] = model;
+                    
                     return RedirectToAction("Index", "Home");
                 }
                 else

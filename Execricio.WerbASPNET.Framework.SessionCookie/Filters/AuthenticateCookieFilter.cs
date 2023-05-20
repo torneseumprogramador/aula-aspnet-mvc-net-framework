@@ -8,7 +8,7 @@ namespace Execricio.WerbASPNET.Framework.SessionCookie.Filters
     {
         public void OnAuthentication(AuthenticationContext filterContext)
         {
-            if (filterContext.HttpContext.Request.Cookies["AuthenticationCookie"] == null)
+            if (filterContext.HttpContext.Request.Cookies["Login"] == null)
                 filterContext.Result = new HttpUnauthorizedResult();
         }
 
