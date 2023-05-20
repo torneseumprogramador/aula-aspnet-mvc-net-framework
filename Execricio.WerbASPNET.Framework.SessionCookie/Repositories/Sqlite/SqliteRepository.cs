@@ -1,4 +1,5 @@
-﻿using Execricio.WerbASPNET.Framework.SessionCookie.Repositories.Interfaces.Sqlite;
+﻿using Execricio.WerbASPNET.Framework.SessionCookie.Models;
+using Execricio.WerbASPNET.Framework.SessionCookie.Repositories.Interfaces.Sqlite;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -37,16 +38,19 @@ namespace Execricio.WerbASPNET.Framework.SessionCookie.Repositories.Sqlite
         public LoginModel Login()
         {
             // Implementação do método Login
+            return new LoginModel();
         }
 
         public LogoutModel Logout()
         {
             // Implementação do método Logout
+            return new LogoutModel();
         }
 
         public bool Signin(UserModel userModel)
         {
             // Implementação do método Signin
+            return true;
         }
     }
 }
