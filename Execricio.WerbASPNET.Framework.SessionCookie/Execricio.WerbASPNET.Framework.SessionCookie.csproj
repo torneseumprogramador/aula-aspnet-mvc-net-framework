@@ -126,6 +126,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\LogoutRequest.cs" />
+    <Compile Include="Requests\LoginRequest.cs" />
+    <Compile Include="Responses\LogoutResponse.cs" />
+    <Compile Include="Responses\LoginResponse.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
