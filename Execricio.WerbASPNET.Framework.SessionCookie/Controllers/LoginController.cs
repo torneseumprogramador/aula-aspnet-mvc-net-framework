@@ -1,39 +1,33 @@
 ﻿using Execricio.WerbASPNET.Framework.SessionCookie.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Execricio.WerbASPNET.Framework.SessionCookie.Controllers
 {
     public class LoginController : Controller
     {
-        // GET: Login
+        [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.Title = "Login";
-            return View();
+            return View(new LoginViewModel());
         }
 
         [HttpPost]
-        public ActionResult LoginUsuario(LoginViewModel model)
+        public ActionResult Index(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var userExists = model.Username == "admin" && model.Password == "admin";
+                bool loginValido = model.Username == "admin" && model.Password == "admin";
 
-                if (userExists)
+                if (loginValido)
                 {
+                    TempData["User"] = model.Username;
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Usuário ou senha inválidos.");
-                    return View(model);
+                    ModelState.AddModelError(string.Empty, "Credenciais inválidas. Tente novamente.");
                 }
             }
-
             return View(model);
         }
     }

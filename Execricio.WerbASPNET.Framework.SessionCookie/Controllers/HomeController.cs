@@ -10,9 +10,7 @@ namespace Execricio.WerbASPNET.Framework.SessionCookie.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home";
             return View();
         }
-
     }
 }
