@@ -22,17 +22,21 @@ namespace Execricio.WerbASPNET.Framework.SessionCookie.Repositories.Sqlite
             using (IDbConnection connection = GetConnection())
             {
                 string query = "SELECT * FROM Users";
-                return connection.Query<UserModel>(query);
+                //return connection.Query<UserModel>(query);
             }
+
+            return Enumerable.Empty<UserModel>();
         }
 
         public UserModel User(string username)
         {
-            using (IDbConnection connection = new GetConnection())
+            using (IDbConnection connection = GetConnection())
             {
                 string query = "SELECT * FROM Users WHERE Username = @Username";
-                return connection.QuerySingleOrDefault<UserModel>(query, new { Username = username });
+                //return connection.QuerySingleOrDefault<UserModel>(query, new { Username = username });
             }
+
+            return new UserModel();
         }
 
         public LoginModel Login()
@@ -47,7 +51,7 @@ namespace Execricio.WerbASPNET.Framework.SessionCookie.Repositories.Sqlite
             return new LogoutModel();
         }
 
-        public bool Signin(UserModel userModel)
+        public bool Signin(UserModel user)
         {
             // Implementação do método Signin
             return true;

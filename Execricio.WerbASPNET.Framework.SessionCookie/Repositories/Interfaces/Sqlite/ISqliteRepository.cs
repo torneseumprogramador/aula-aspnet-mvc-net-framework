@@ -13,6 +13,6 @@ namespace Execricio.WerbASPNET.Framework.SessionCookie.Repositories.Interfaces.S
         UserModel User(string username);
         LoginModel Login();
         LogoutModel Logout();
-        bool Signin(UserModel);
+        bool Signin(UserModel user);
     }
 }
