@@ -21,6 +21,12 @@ namespace LabMVC
             );
 
             routes.MapRoute(
+              name: "SignOut",
+              url: "{controller}/{action}",
+              defaults: new { controller = "Login", action = "Signout" }
+          );
+
+            routes.MapRoute(
                 name: "ListaClientes",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
@@ -28,14 +34,14 @@ namespace LabMVC
 
             routes.MapRoute(
                 name: "usuario_cadastro",
-                url: "{controler}/{action}/{id}",
-                defaults: new { controller = "Usuarios", action = "Form", id = UrlParameter.Optional }
+                url: "{controler}/{action}",
+                defaults: new { controller = "Usuarios", action = "Cadastrar" }
             );
 
             routes.MapRoute(
-                name: "clientes_novo",
-                url: "clientes/novo",
-                defaults: new { controller = "Clientes", action = "Index" }
+                name: "clientes_atualizar",
+                url: "{controler}/{action}/{id}",
+                defaults: new { controller = "Clientes", action = "Atualizar", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
@@ -43,6 +49,13 @@ namespace LabMVC
                 url: "{controler}/{action}/{id}",
                 defaults: new { controller = "Clientes", action = "Excluir", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+               name: "form_view",
+               url: "{controler}/Form",
+               defaults: new { controller = "Clientes", action = "Form" }
+           );
+
         }
     }
 }

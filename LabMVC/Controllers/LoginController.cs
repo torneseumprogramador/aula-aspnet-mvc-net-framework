@@ -5,6 +5,7 @@ using LabMVC.Models;
 using LabMVC.ModelViews;
 using Newtonsoft.Json;
 using System;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
@@ -21,9 +22,10 @@ namespace LabMVC.Controllers
 
         public ActionResult Logar(LoginDTO loginDTO)
         {
+
             if (loginDTO == null || string.IsNullOrEmpty(loginDTO.Login) || string.IsNullOrEmpty(loginDTO.Senha))
                 return View("index", new ErroModelView { Mensagem = "Login ou senha inválida" });
-
+   
             if (Usuario.AutenticaUsuario(loginDTO))
             {
                 var cookie = new HttpCookie("usuario_logado");
@@ -35,11 +37,23 @@ namespace LabMVC.Controllers
                 cookie.HttpOnly = true;
                 Response.Cookies.Add(cookie);
 
-                return RedirectToAction("Index","Home");
-                //return Redirect("/");
+                return RedirectToAction("Index", "Home");
+            }
+            
+            return View("index", new ErroModelView { Mensagem = "Login ou senha inválida" });
+        }
+
+        public ActionResult Signout() 
+        {
+            var cookie = Response.Cookies["usuario_logado"];
+
+            if(cookie != null)
+            {
+                Response.Cookies["usuario_logado"].Value = null;
+                Response.Cookies["usuario_logado"].Expires = DateTime.Now.AddDays(-1);
             }
 
-            return View("index", new ErroModelView { Mensagem = "Login ou senha inválida" });
+            return Redirect("/");
         }
     }
 }

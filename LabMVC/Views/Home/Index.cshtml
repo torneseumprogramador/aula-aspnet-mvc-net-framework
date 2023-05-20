@@ -10,9 +10,9 @@
         <div class="col-md-6"><span style="font-size:25px;">Clientes cadastrados: @ViewBag.clientes.Count</span></div>
 
         <div class="col-md-6">
-            <button class="btn btn-primary pull-right">
-                <i class="fa-solid fa-user-plus"></i> Cadastrar Cliente
-                </button>
+            <button class="btn btn-primary pull-right" onclick="cadastrarCliente()">
+                <i class="fa-solid fa-user-plus"></i> Cadastrar
+            </button>
         </div>
     </div>
 
@@ -35,7 +35,7 @@
                     <td>@cliente.Telefone</td>
                     <td>@cliente.Cidade</td>
                     <td>
-                        <button class="btn btn-warning" onclick="atualizarUsuario(@cliente.Id)">
+                        <button class="btn btn-warning" onclick="atualizarUsuario(@cliente.Id)" >
                             <i class="fa-solid fa-pen-to-square"></i>
                         </button>
                         <button class="btn btn-danger" onclick="excluiUsuario(@cliente.Id)">

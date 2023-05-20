@@ -3,6 +3,7 @@ using LabMVC.Utils;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Web.UI.WebControls;
@@ -22,14 +23,80 @@ namespace LabWebForms.Models
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO Clientes (Nome, Telefone, id_cidade) VALUES (@Nome, @Telefone, @idCidade)";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Nome", Nome);
-                command.Parameters.AddWithValue("@Telefone", Telefone);
-                command.Parameters.AddWithValue("@idCidade", Cidade);
+                string sql = "INSERT INTO Clientes (Id, Nome, Telefone, Cidade) VALUES (@Id, @Nome, @Telefone, @Cidade)";
+                
+                Id = ObterId();
 
-                connection.Open();
-                command.ExecuteNonQuery();
+                using (var conexao = ConectaBase.Conexao())
+                {
+                    conexao.Open();
+
+                    using (var command = new SQLiteCommand(sql, conexao))
+                    {
+                        command.Parameters.AddWithValue("@Id", Id);
+                        command.Parameters.AddWithValue("@Nome", Nome);
+                        command.Parameters.AddWithValue("@Telefone", Telefone);
+                        command.Parameters.AddWithValue("@Cidade", Cidade);
+                        command.ExecuteNonQuery();
+
+                    }
+                }
+            }
+        }
+
+        public static int ObterId()
+        {
+            string sql = "SELECT MAX(id) FROM Clientes";
+            using (var conexao = ConectaBase.Conexao())
+            {
+                conexao.Open();
+                using (var command = new SQLiteCommand(sql, conexao))
+                {
+                    try
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                if (reader[0].GetType() != typeof(DBNull))
+                                {
+                                    return Convert.ToInt32(reader[0]) + 1;
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception($"Houve um problema ao ler da base: {ex}");
+                    }
+                }
+            }
+            return 1;
+        }
+
+        public void Atualizar()
+        {
+            string sql = @"
+                UPDATE Clientes
+                SET 
+                    Nome = @Nome, 
+                    Telefone = @Telefone, 
+                    Cidade = @Cidade
+                WHERE 
+                    Id = @Id
+            ";
+
+            using (var conexao = ConectaBase.Conexao())
+            {
+                conexao.Open();
+                using (var command = new SQLiteCommand(sql, conexao))
+                {
+                    command.Parameters.AddWithValue("@Id", Id);
+                    command.Parameters.AddWithValue("@Nome", Nome);
+                    command.Parameters.AddWithValue("@Telefone", Telefone);
+                    command.Parameters.AddWithValue("@Cidade", Cidade);
+                    command.ExecuteNonQuery();
+                }
             }
         }
 
@@ -70,7 +137,6 @@ namespace LabWebForms.Models
                     }
                 }
             }
-
 
             return cliente;
         }

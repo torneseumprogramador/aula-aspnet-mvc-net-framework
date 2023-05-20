@@ -1,34 +1,32 @@
-﻿
+﻿@using LabWebForms.Models
+@model Cliente
+
 @{
     ViewBag.Title = @ViewBag.Operacao;
 }
 
+
 <h2>@ViewBag.Operacao Cliente</h2>
 
 <main>
-    <form>
+    <form  action="@Url.Action(ViewBag.Target, "Clientes")" method="get">
         <div class="row m-4">
             <label class="mb-3">Nome</label>
-            <input type="text" class="form-control" name="Nome" />
+            <input type="text" class="form-control" value="@Model.Nome" name="Nome" />
         </div>
 
         <div class="row mb-3">
-            <label>Email</label>
-            <input type="text" class="form-control" name="Email" />
+            <label>Telefone</label>
+            <input type="text" class="form-control" value="@Model.Telefone" name="telefone" />
         </div>
 
         <div class="row mb-3">
-            <label>Login</label>
-            <input type="text" class="form-control" name="Login" />
-        </div>
-
-        <div class="row mb-3">
-            <label>Senha</label>
-            <input type="password" class="form-control" name="Senha" />
+            <label>Cidade</label>
+            <input type="text" class="form-control" value="@Model.Cidade" name="Cidade" />
         </div>
 
         <div class="row mb-3 mt-3">
-            <button type="submit" class="btn btn-primary">@ViewBag.BotaoOperacao</button>
+            <button type="submit" class="btn btn-primary">@ViewBag.Operacao</button>
         </div>
     </form>
 </main>

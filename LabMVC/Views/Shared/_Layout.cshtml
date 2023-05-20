@@ -8,6 +8,13 @@
     @Styles.Render("~/Content/css")
     @Styles.Render("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <script>
+        function singOut() {
+            console.log("sign out");
+            window.location.href = window.location.origin + "/Login/Signout";
+        }
+    </script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -26,6 +33,7 @@
                     <li>@Html.ActionLink("Sobre", "About", "Home")</li>
                     <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
                 </ul>
+                <button class="btn-sm btn-danger pull-right" onclick="singOut()"><i class="fa-solid fa-xmark"></i> Log Out</button>
             </div>
         </div>
     </div>
@@ -33,7 +41,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Meu Aplicativo ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year - Exercício ASP.NET Gama Upskilling</p>
         </footer>
     </div>
 

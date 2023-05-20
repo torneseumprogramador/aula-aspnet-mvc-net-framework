@@ -2,13 +2,14 @@
     window.location.href = window.location.origin + '/usuario/form'
 });
 
-function atualizarUsuario(id){
-    //$.get(window.location.origin + "", function ()){ };
-    console.log("atualizar este usuario!" + id);
+function cadastrarCliente() {
+    window.location.href = window.location.origin + "/clientes/Cadastrar/";
+}
 
+function atualizarUsuario(id){
+    window.location.href = window.location.origin + "/clientes/Atualizar/" + id;
 }
 
 function excluiUsuario(id) {
-    $.get(window.location.origin +"/clientes/excluir/"+id);
-    console.log("excluir este usuario =>"+id);
+    window.location.href = window.location.origin + "/clientes/excluir/" + id;
 }
