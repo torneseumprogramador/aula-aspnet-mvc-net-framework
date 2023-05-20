@@ -119,6 +119,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Configurations\DTO\AccessDTO.cs" />
     <Compile Include="Configurations\DTO\UserDTO.cs" />
+    <Compile Include="Configurations\Enum\AccessType.cs" />
     <Compile Include="Configurations\Enum\AuthenticationType.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -127,7 +128,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\SigninModel.cs" />
+    <Compile Include="Models\LogoutModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IBaseRepository.cs" />
+    <Compile Include="Repositories\Interfaces\Sqlite\ISqliteRepository.cs" />
+    <Compile Include="Repositories\Sqlite\SqliteRepository.cs" />
     <Compile Include="Requests\LogoutRequest.cs" />
     <Compile Include="Requests\LoginRequest.cs" />
     <Compile Include="Responses\LogoutResponse.cs" />
@@ -176,8 +185,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-    <Folder Include="Repositories\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
