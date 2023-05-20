@@ -1,8 +1,4 @@
 ﻿using Execricio.WerbASPNET.Framework.SessionCookie.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Execricio.WerbASPNET.Framework.SessionCookie.Controllers
@@ -24,7 +20,7 @@ namespace Execricio.WerbASPNET.Framework.SessionCookie.Controllers
 
                 if (loginValido)
                 {
-                    ViewBag.UserLoged = $"Olá, {model.Username}";
+                    TempData["User"] = model.Username;
                     return RedirectToAction("Index", "Home");
                 }
                 else

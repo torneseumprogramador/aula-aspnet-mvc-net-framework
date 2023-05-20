@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string username = TempData["User"] as string;
+    ViewBag.Username = username;
+    TempData.Keep("User");
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
