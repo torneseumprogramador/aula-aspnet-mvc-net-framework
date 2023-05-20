@@ -24,8 +24,8 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.Cidade)
-        @Html.DropDownListFor(model => model.Cidade.Id, ViewBag.Cidades as SelectList, "-- Selecione a cidade --", new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Cidade.Id, "", new { @class = "text-danger" })
+        @Html.DropDownListFor(model => model.Cidade, ViewBag.Cidades as SelectList, "-- Selecione a cidade --", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Cidade, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">

@@ -13,14 +13,15 @@ namespace LabMVC
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+      
             routes.MapRoute(
-               name: "clientes_novo",
-               url: "clientes/novo",
-               defaults: new { controller = "Clientes", action = "Index" }
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
-                name: "Default",
+                name: "ListaClientes",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
@@ -29,6 +30,18 @@ namespace LabMVC
                 name: "usuario_cadastro",
                 url: "{controler}/{action}/{id}",
                 defaults: new { controller = "Usuarios", action = "Form", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "clientes_novo",
+                url: "clientes/novo",
+                defaults: new { controller = "Clientes", action = "Index" }
+            );
+
+            routes.MapRoute(
+                name: "usuario_exclusao",
+                url: "{controler}/{action}/{id}",
+                defaults: new { controller = "Clientes", action = "Excluir", id = UrlParameter.Optional }
             );
         }
     }

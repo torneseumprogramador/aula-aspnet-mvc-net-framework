@@ -15,8 +15,6 @@ namespace LabMVC.Controllers
 {
     public class UsuarioController : Controller
     {
-        private static RNGCryptoServiceProvider _criptoServiceProvider = new RNGCryptoServiceProvider();
-
         // GET: Usuario
         public ActionResult Index()
         {
@@ -36,11 +34,12 @@ namespace LabMVC.Controllers
                 novoUsuario.Nome = usuario.Nome;
                 novoUsuario.Login = usuario.Login;
                 novoUsuario.Email = usuario.Email;
+
                 if(!string.IsNullOrEmpty(usuario.Senha))
                 {
                     novoUsuario.Senha = HashGen.hashficaSenha(usuario.Senha);
+                    novoUsuario.Salvar();
                    
-                    Session["usuario"] = novoUsuario;
                     return  RedirectToAction("Index","Home");
                 }
 

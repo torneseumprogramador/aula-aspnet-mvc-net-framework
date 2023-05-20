@@ -1,4 +1,6 @@
-﻿using System.Security.Cryptography;
+﻿using System;
+using System.Collections;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace LabMVC.Cripto
@@ -9,7 +11,15 @@ namespace LabMVC.Cripto
         {
             using (var sha1 = SHA1.Create())
             {
-                return sha1.ComputeHash(Encoding.UTF8.GetBytes(senha)).ToString();
+                var hash = sha1.ComputeHash(Encoding.UTF8.GetBytes(senha));
+                var sb = new StringBuilder(hash.Length * 2);
+
+                foreach (byte b in hash)
+                {
+                    sb.Append(b.ToString("X2"));
+                }
+
+                return sb.ToString();
             }
         }
     }
