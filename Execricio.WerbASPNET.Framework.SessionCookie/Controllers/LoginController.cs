@@ -1,4 +1,7 @@
-﻿using Execricio.WerbASPNET.Framework.SessionCookie.ViewModel;
+﻿using Execricio.WerbASPNET.Framework.SessionCookie.Services;
+using Execricio.WerbASPNET.Framework.SessionCookie.ViewModel;
+using System.Net.Sockets;
+using System.Text;
 using System.Web.Mvc;
 
 namespace Execricio.WerbASPNET.Framework.SessionCookie.Controllers
@@ -17,6 +20,9 @@ namespace Execricio.WerbASPNET.Framework.SessionCookie.Controllers
             if (ModelState.IsValid)
             {
                 bool loginValido = model.Username == "admin" && model.Password == "admin";
+
+                var key = PasswordHasher.HashPassword(model.Password);
+
 
                 if (loginValido)
                 {
