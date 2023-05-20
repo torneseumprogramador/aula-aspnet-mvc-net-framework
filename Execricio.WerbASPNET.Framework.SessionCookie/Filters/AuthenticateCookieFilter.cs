@@ -4,7 +4,6 @@ using System.Web.Mvc.Filters;
 
 namespace Execricio.WerbASPNET.Framework.SessionCookie.Filters
 {
-
     public class AuthenticateCookieFilter : ActionFilterAttribute, IAuthenticationFilter
     {
         public void OnAuthentication(AuthenticationContext filterContext)
