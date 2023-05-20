@@ -21,8 +21,9 @@ namespace Execricio.WerbASPNET.Framework.SessionCookie.Controllers
             {
                 bool loginValido = model.Username == "admin" && model.Password == "admin";
 
-                var key = PasswordHasher.HashPassword(model.Password);
-
+                //var hashed = PasswordHasher.HashPassword(model.Password);
+                //var unhashed = PasswordHasher.UnhashPassword(hashed);
+                //bool senhaConfere = PasswordHasher.VerifyPassword(unhashed, hashed);
 
                 if (loginValido)
                 {

@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Execricio.WerbASPNET.Framework.SessionCookie.Services
 {
-    public static class PasswordHasher
+    public static class PasswordHasherService
     {
         private const string SECRET = "9124860198260sdcvsd@29357235";
 
@@ -18,10 +18,10 @@ namespace Execricio.WerbASPNET.Framework.SessionCookie.Services
 
             using (var aesAlg = new RijndaelManaged())
             {
-                aesAlg.Key = keyBytes;
+                aesAlg.Key = GetValidKeySize(keyBytes, aesAlg.KeySize / 8);
                 aesAlg.Mode = CipherMode.CBC;
                 aesAlg.Padding = PaddingMode.PKCS7;
-                aesAlg.GenerateIV();
+                aesAlg.GenerateIV(); // Gera um IV aleatório
 
                 var encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
                 byte[] encryptedBytes = encryptor.TransformFinalBlock(textBytes, 0, textBytes.Length);
@@ -46,7 +46,7 @@ namespace Execricio.WerbASPNET.Framework.SessionCookie.Services
 
             using (var aesAlg = new RijndaelManaged())
             {
-                aesAlg.Key = keyBytes;
+                aesAlg.Key = GetValidKeySize(keyBytes, aesAlg.KeySize / 8);
                 aesAlg.Mode = CipherMode.CBC;
                 aesAlg.Padding = PaddingMode.PKCS7;
                 aesAlg.IV = iv;
@@ -56,8 +56,20 @@ namespace Execricio.WerbASPNET.Framework.SessionCookie.Services
 
                 return Encoding.UTF8.GetString(decryptedBytes);
             }
-
         }
+
+        private static byte[] GetValidKeySize(byte[] keyBytes, int validSize)
+        {
+            if (keyBytes.Length == validSize)
+            {
+                return keyBytes;
+            }
+
+            byte[] validKeyBytes = new byte[validSize];
+            Array.Copy(keyBytes, validKeyBytes, Math.Min(keyBytes.Length, validSize));
+            return validKeyBytes;
+        }
+
         public static bool VerifyPassword(string hashedPassword)
         {
             return true;

@@ -132,7 +132,9 @@
     <Compile Include="Requests\LoginRequest.cs" />
     <Compile Include="Responses\LogoutResponse.cs" />
     <Compile Include="Responses\LoginResponse.cs" />
-    <Compile Include="Services\PasswordHasher.cs" />
+    <Compile Include="Services\AuthenticationManagerService.cs" />
+    <Compile Include="Services\Interfaces\IAuthenticationManagerService.cs" />
+    <Compile Include="Services\PasswordHasherService.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -176,7 +178,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Repositories\" />
-    <Folder Include="Services\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
