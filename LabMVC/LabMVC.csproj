@@ -148,6 +148,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Cripto\Encript.cs" />
     <Compile Include="Data\SqliteDataAccess.cs" />
+    <Compile Include="DTO\CadastroClienteDTO.cs" />
     <Compile Include="Filtros\AutenticadoFilter.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\LogadoController.cs" />

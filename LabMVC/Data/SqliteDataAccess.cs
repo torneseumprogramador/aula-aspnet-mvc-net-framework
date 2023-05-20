@@ -14,11 +14,6 @@ namespace LabMVC.DbSqLite
 {
     public class SqliteDataAccess
     {
-        public static void SalvarCliente(Cliente cliente)
-        {
-
-        }
-
         private static string GetConnection(string id = "MinhaConexao")
         {
             string dataDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -29,11 +24,19 @@ namespace LabMVC.DbSqLite
             return connectionString;
         }
 
+        public static void SalvarValor<T>(string sql, T argument)
+        {
+            using (IDbConnection connection = new SQLiteConnection(GetConnection()))
+            {
+                connection.Execute(sql, argument);
+            }
+        }
+
         public static Task<List<T>> BuscarLista<T>(string sql)
         {
             IEnumerable<T> result;
 
-            using (SQLiteConnection connection = new SQLiteConnection(GetConnection()))
+            using (IDbConnection connection = new SQLiteConnection(GetConnection()))
             {
                 result = connection.QueryAsync<T>(sql).Result;                
             }
@@ -41,21 +44,31 @@ namespace LabMVC.DbSqLite
             return Task.FromResult((List<T>)result);
         }
 
-        public async Task<IEnumerable<T>> BuscarLista<T, S>(string sql, S argument)
+        public static Task<List<T>> BuscarLista<T, S>(string sql, S argument)
         {
             IEnumerable<T> result;
 
-            using (SQLiteConnection connection = new SQLiteConnection(GetConnection()))
+            using (IDbConnection connection = new SQLiteConnection(GetConnection()))
             {
-               return result = await connection.QueryAsync<T>(sql, argument);
+               result = connection.QueryAsync<T>(sql, argument).Result;
+            }
+
+            return Task.FromResult((List<T>)result);
+        }
+
+        public static Task<T> BuscarValor<T, R>(string sql, R argument)
+        {
+            using (IDbConnection connection = new SQLiteConnection(GetConnection()))
+            {
+               return Task.FromResult(connection.QueryFirstOrDefaultAsync<T>(sql, argument).Result);
             }
         }
 
-        public async Task<T> BuscarValor<T, R>(string sql, R argument)
+        public static void DeletarValor<T>(string sql, T argument)
         {
-            using (SQLiteConnection connection = new SQLiteConnection(GetConnection()))
+            using (IDbConnection connection = new SQLiteConnection(GetConnection()))
             {
-               return await connection.QueryFirstOrDefaultAsync<T>(sql, argument);
+                connection.Execute(sql, argument);
             }
         }
     }

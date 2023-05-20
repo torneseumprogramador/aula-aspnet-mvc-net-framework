@@ -9,28 +9,37 @@ namespace LabWebForms.Models
 {
     public class Cliente
     {
-        private static string dataDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        private static string connectionString = ConfigurationManager.ConnectionStrings["MinhaConexao"].ConnectionString;
-        
-
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Telefone { get; set; }
         public Cidade Cidade { get; set; }
 
-        public void Salvar()
-        {           
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            {
-                string query = "INSERT INTO Clientes (Nome, Telefone, id_cidade) VALUES (@Nome, @Telefone, @idCidade)";
-                SQLiteCommand command = new SQLiteCommand(query, connection);
-                command.Parameters.AddWithValue("@Nome", Nome);
-                command.Parameters.AddWithValue("@Telefone", Telefone);
-                command.Parameters.AddWithValue("@idCidade", Cidade.Id);
+        public static void Salvar(Cliente cliente)
+        {
+            //using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            //{
+            //    string query = "INSERT INTO Clientes (Nome, Telefone, id_cidade) VALUES (@Nome, @Telefone, @idCidade)";
+            //    SQLiteCommand command = new SQLiteCommand(query, connection);
+            //    command.Parameters.AddWithValue("@Nome", Nome);
+            //    command.Parameters.AddWithValue("@Telefone", Telefone);
+            //    command.Parameters.AddWithValue("@idCidade", Cidade.Id);
 
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
+            //    connection.Open();
+            //    command.ExecuteNonQuery();
+            //}
+
+            string query = @"INSERT INTO CLIENTES (Nome, Telefone)
+                                           VALUES (@Nome, @Telefone)";
+
+            SqliteDataAccess.SalvarValor(query, cliente);
+        }
+
+        public static void Deletar(int? id)
+        {
+            string query = @"DELETE FROM CLIENTES
+                                   WHERE ID = @Id";
+
+            SqliteDataAccess.DeletarValor(query, new { Id = id });
         }
 
         public static List<Cliente> Todos()
@@ -63,7 +72,7 @@ namespace LabWebForms.Models
             string query = @"SELECT Id, 
                                     Nome, 
                                     id_cidade, 
-                                    Telefone 
+                                    REPLACE(Telefone, ' ', '') AS Telefone 
                                FROM Clientes";
 
             return SqliteDataAccess.BuscarLista<Cliente>(query).Result;

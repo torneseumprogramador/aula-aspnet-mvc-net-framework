@@ -1,4 +1,7 @@
-﻿using LabMVC.Filtros;
+﻿using LabMVC.DbSqLite;
+using LabMVC.DTO;
+using LabMVC.Filtros;
+using LabMVC.ModelViews;
 using LabWebForms.Models;
 using System;
 using System.Collections.Generic;
@@ -21,8 +24,7 @@ namespace LabMVC.Controllers
             //ViewData["clientes ssds"] = Cliente.Todos();
             return View(new
             {
-                Clientes = clientes,
-                Mensagem = "oi"
+                Clientes = clientes
             });
         }
 
@@ -38,6 +40,39 @@ namespace LabMVC.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult CadastrarCliente(Cliente clienteDTO)
+        {
+            if (clienteDTO == null || string.IsNullOrEmpty(clienteDTO.Nome) || string.IsNullOrEmpty(clienteDTO.Telefone))
+            {
+                Index();
+                return View("index");
+            }
+            else
+            {
+                Cliente.Salvar(clienteDTO);
+
+                Index();
+                return View("index");
+            }
+
+        }
+
+        public ActionResult DeletarCliente(int? id)
+        {
+            if (id == null)
+            {
+                Index();
+                return View("index");
+            }
+            else
+            {
+                Cliente.Deletar(id);
+
+                Index();
+                return View("index");
+            }
         }
     }
 }
