@@ -32,7 +32,7 @@ namespace AspNetFrameworkMVC.Controllers
                 return Redirect("/");
             }
 
-            return Redirect("/");
+            return View("index", new ErroModelView { Mensagem = "Login ou senha inválida" });
         }
        
     }
