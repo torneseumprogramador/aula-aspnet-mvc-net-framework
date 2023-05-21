@@ -77,6 +77,11 @@ namespace AspNetFrameworkMVC
                 url: "contato2",
                 new { controller = "Home", action = "Contact" }
                 );
+            routes.MapRoute(
+                name: "login",
+                url: "login",
+                new { controller = "Login", action = "Index" }
+                );
 
             routes.MapRoute(
                 name: "Default",

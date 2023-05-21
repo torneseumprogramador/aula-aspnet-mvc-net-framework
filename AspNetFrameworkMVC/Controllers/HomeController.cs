@@ -5,12 +5,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MVC_GerenciadorDeConteudo.Controllers
+namespace AspNetFrameworkMVC.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : LogadoController
     {
         public ActionResult Index()
         {
+            if (!Logado())
+            {
+                return null;
+            }
             return View();
         }
         public ActionResult Novo()
