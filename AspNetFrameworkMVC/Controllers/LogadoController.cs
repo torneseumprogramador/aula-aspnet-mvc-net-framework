@@ -13,7 +13,7 @@ namespace AspNetFrameworkMVC.Controllers
         {
             if (Session["usuario_logado"] == null)
             {
-                Redirect("/login");
+                Response.Redirect("/login");
                 return false;
             }
             return true;

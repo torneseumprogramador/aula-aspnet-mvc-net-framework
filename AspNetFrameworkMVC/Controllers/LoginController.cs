@@ -29,7 +29,7 @@ namespace AspNetFrameworkMVC.Controllers
             {
                 Session["usuario_logado"] = loginDto;
 
-                return RedirectToAction("/");
+                return Redirect("/");
             }
 
             return Redirect("/");
