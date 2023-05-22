@@ -1,4 +1,5 @@
-﻿using AspNetFrameworkMVC.DTO;
+﻿using AspNetFrameworkMVC.Cripto;
+using AspNetFrameworkMVC.DTO;
 using AspNetFrameworkMVC.ModelViews;
 using Business;
 using Newtonsoft.Json;
@@ -34,7 +35,10 @@ namespace AspNetFrameworkMVC.Controllers
 
                 //USANDO COOKIE
                 var cookie = new HttpCookie("usuario_logado");
-                cookie.Value = JsonConvert.SerializeObject(loginDto);
+
+                string encryptedText = Encript.Encrypt(JsonConvert.SerializeObject(loginDto), "12188282sjjabqghhnnwqwqw");
+
+                cookie.Value = encryptedText;
                 cookie.Expires = DateTime.Now.AddDays(1);
                 cookie.HttpOnly = true;
                 Response.Cookies.Add(cookie);

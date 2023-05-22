@@ -1,4 +1,5 @@
-﻿using AspNetFrameworkMVC.DTO;
+﻿using AspNetFrameworkMVC.Cripto;
+using AspNetFrameworkMVC.DTO;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -32,8 +33,16 @@ namespace AspNetFrameworkMVC.Filtros
             var cookie = filterContext.HttpContext.Request.Cookies[sessionName];
             if (cookie != null)
             {
-                LoginDTO loginDto = JsonConvert.DeserializeObject<LoginDTO>(cookie.Value);
+                try
+                {
+                    string value = Encript.Decrypt(cookie.Value, "12188282sjjabqghhnnwqwqw");
+                    LoginDTO loginDto = JsonConvert.DeserializeObject<LoginDTO>(value);
+                }
+                catch (Exception)
+                {
 
+                    filterContext.Result = new HttpUnauthorizedResult();
+                }
             }
             else
             {
