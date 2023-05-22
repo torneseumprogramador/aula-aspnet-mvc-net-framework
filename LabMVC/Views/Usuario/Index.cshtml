@@ -1,0 +1,102 @@
+﻿
+<div class="container">
+    <div class="row justify-content-center">
+        <div>
+            @Html.AntiForgeryToken()
+
+            <!-- Botão de Sair -->
+            <div class="row">
+                <a href="@Url.Action("Deslogar", "Login")" class="btn btn-danger">Sair</a>
+            </div>
+
+
+            <h3> Meu usuário </h3>
+            <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
+                <table class="table table-striped mb-0">
+                    <thead style="background-color: #337ab7;">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Login</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@ViewBag.Usuario.Id</td>
+                            <td>@ViewBag.Usuario.Nome</td>
+                            <td>@ViewBag.Usuario.Email</td>
+                            <td>@ViewBag.Usuario.Login</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Todos os usuários</h3>
+            <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 700px">
+                <table class="table table-striped mb-0">
+                    <thead style="background-color: #337ab7;">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Login</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.Usuarios != null)
+                        {
+                            foreach (var usuario in ViewBag.Usuarios)
+                            {
+                                <tr>
+                                    <th>@usuario.Id</th>
+                                    <td>@usuario.Nome</td>
+                                    <td>@usuario.Email</td>
+                                    <td>@usuario.Login</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<style scoped>
+    table td,
+    table th {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    thead th {
+        color: #fff;
+    }
+
+    .card {
+        border-radius: .5rem;
+    }
+
+    .table-scroll {
+        border-radius: .5rem;
+    }
+
+        .table-scroll table thead th {
+            font-size: 1.25rem;
+        }
+
+    thead {
+        top: 0;
+        position: sticky;
+    }
+
+    .container {
+        margin-top: 40px;
+    }
+
+    .btn {
+        float: right;
+        margin-right: 15px;
+    }
+</style>

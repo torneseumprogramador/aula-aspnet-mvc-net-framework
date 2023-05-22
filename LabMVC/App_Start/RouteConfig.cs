@@ -20,6 +20,18 @@ namespace LabMVC
             );
 
             routes.MapRoute(
+               name: "login",
+               url: "login",
+               defaults: new { controller = "Login", action = "Index" }
+            );
+
+            routes.MapRoute(
+                name: "usuario",
+                url: "usuario",
+                defaults: new { controller = "Usuario", action = "Index" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
