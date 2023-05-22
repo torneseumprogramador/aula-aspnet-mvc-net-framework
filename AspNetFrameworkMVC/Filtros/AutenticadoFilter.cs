@@ -1,4 +1,5 @@
 ﻿using AspNetFrameworkMVC.DTO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +15,25 @@ namespace AspNetFrameworkMVC.Filtros
         
         public void OnAuthentication(AuthenticationContext filterContext)
         {
-            var session = filterContext.HttpContext.Session[sessionName];
-            if (session != null)
-            {
-                LoginDTO loginDTO = (LoginDTO)session;
+            //USANDO SESSION
+            //var session = filterContext.HttpContext.Session[sessionName];
+            //if (session != null)
+            //{
+            //    LoginDTO loginDTO = (LoginDTO)session;
 
-                //
-                //
-                //
+            //    //Demais Validacies
+            //}
+            //else
+            //{
+            //    filterContext.Result = new HttpUnauthorizedResult();
+            //}
+
+            //USANDO COOKIE
+            var cookie = filterContext.HttpContext.Request.Cookies[sessionName];
+            if (cookie != null)
+            {
+                LoginDTO loginDto = JsonConvert.DeserializeObject<LoginDTO>(cookie.Value);
+
             }
             else
             {

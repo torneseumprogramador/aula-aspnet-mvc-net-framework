@@ -1,9 +1,11 @@
 ﻿using AspNetFrameworkMVC.DTO;
 using AspNetFrameworkMVC.ModelViews;
 using Business;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -27,7 +29,15 @@ namespace AspNetFrameworkMVC.Controllers
 
             if (loginDto.Login == "kairobc@hotmail.com" && loginDto.senha == "123456")
             {
-                Session["usuario_logado"] = loginDto;
+                //USANDO SESSION
+                //Session["usuario_logado"] = loginDto;
+
+                //USANDO COOKIE
+                var cookie = new HttpCookie("usuario_logado");
+                cookie.Value = JsonConvert.SerializeObject(loginDto);
+                cookie.Expires = DateTime.Now.AddDays(1);
+                cookie.HttpOnly = true;
+                Response.Cookies.Add(cookie);
 
                 return Redirect("/");
             }

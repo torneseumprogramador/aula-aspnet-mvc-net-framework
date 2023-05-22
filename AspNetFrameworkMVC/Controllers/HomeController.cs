@@ -18,7 +18,7 @@ namespace AspNetFrameworkMVC.Controllers
             //    return null;
             //}
 
-            return new HttpUnauthorizedResult();
+            //return new HttpUnauthorizedResult();
 
             return View();
         }
