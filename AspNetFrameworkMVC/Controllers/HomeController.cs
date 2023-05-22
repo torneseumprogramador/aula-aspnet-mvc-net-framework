@@ -1,4 +1,5 @@
-﻿using Business;
+﻿using AspNetFrameworkMVC.Filtros;
+using Business;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +8,18 @@ using System.Web.Mvc;
 
 namespace AspNetFrameworkMVC.Controllers
 {
+    [AutenticadoFilter]
     public class HomeController : LogadoController
     {
         public ActionResult Index()
         {
-            if (!Logado())
-            {
-                return null;
-            }
+            //if (!Logado())
+            //{
+            //    return null;
+            //}
+
+            return new HttpUnauthorizedResult();
+
             return View();
         }
         public ActionResult Novo()
