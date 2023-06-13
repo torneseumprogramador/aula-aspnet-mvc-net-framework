@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Cadastro de Usuario";
+}
+
+<div class="jumbotron">
+    <h1>@ViewBag.Title</h1>
+
+    <form action="/Usuario/Cadastrar" method="post">
+        <div class="form-group">
+            <label for="Nome">Nome</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" name="Nome" placeholder="nome">
+        </div>
+        <div class="form-group">
+            <label for="Email">Email</label>
+            <input type="text" class="form-control" id="Nome" name="Email" placeholder="Email">
+
+        </div>
+        <div class="form-group">
+            <label for="login">Login</label>
+            <input type="text" class="form-control" id="login" name="login" placeholder="login">
+            
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="password" name="senha" placeholder="Password">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Salvar Cadastro</button>
+       
+    </form>
+
+</div>
