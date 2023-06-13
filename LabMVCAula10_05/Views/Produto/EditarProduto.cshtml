@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Edicao";
+}
+@using LabMVCAula10_05.Models;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Editar Produto</title>
+</head>
+<body>
+    <div>
+        <h2>Editar Produto</h2>
+        <form style="background-color:lightcyan; border-radius:4px;padding:4px" method="post" action="@Url.Action("SalvarEdicaoProduto", "Produto")">
+            <input type="hidden" name="id" value="@ViewBag.Produto.Id" />
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input class="form-control" type="text" id="nome" name="nome" value="@ViewBag.Produto.Nome" />
+            </div>
+            <div class="form-group">
+                <label for="descricao">Descrição:</label>
+                <input style="max-width:500px" class="form-control" type="text" id="descricao" name="descricao" value="@ViewBag.Produto.Descricao" />
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success" type="submit">Salvar</button>
+            </div>
+        </form>
+
+    </div>
+</body>
+</html>

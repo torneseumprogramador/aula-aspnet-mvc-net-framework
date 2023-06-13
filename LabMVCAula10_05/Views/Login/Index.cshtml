@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+@using LabMVCAula10_05.ModelViews;
+
+
+    <div class="jumbotron">
+        <h1>Autenticacao</h1>
+
+        <form action="/Login/Logar" method="post">
+            <div class="form-group">
+                <label for="UserName">User Name</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" name="login" placeholder="User name">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" name="senha" placeholder="Password">
+            </div>
+            @if (Model != null && !string.IsNullOrEmpty(((ErroModelView)Model).Mensagem))
+            {<div class="alert alert-danger" role="alert">
+                    @(((ErroModelView)Model).Mensagem)
+                </div>
+
+            }
+            <button type="submit" class="btn btn-primary">Login</button>
+            <a href="/usuario" class="btn btn-primary">Cadastrar</a>
+        </form>
+
+    </div>

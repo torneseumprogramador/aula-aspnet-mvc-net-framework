@@ -1,0 +1,138 @@
+﻿@{
+    ViewBag.Title = "Produto";
+}
+@using LabMVCAula10_05.Models;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Teste</title>
+    <style>
+        .quadro {
+            margin: 10PX;
+            padding: 10PX;
+            width: 300px;
+            height: auto;
+            border: 2px solid black;
+            position: relative;
+            background-color: lightslategray;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+    <h2>Cadastrado de Produtos</h2>
+
+    <div style="background-color: #BBDEFB; padding: 4px; border-radius: 10px">
+        <form method="post" action="@Url.Action("Salvar", "Produto")" style="padding:10px 2px; margin:4px">
+            <div class="form-group">
+                <label for="Nome">Nome:</label>
+                <input class="form-control" type="text" id="Nome" name="Nome" required placeholder="Digite o nome do Produto">
+            </div>
+            <div class="form-group">
+                <label for="Descricao">Descricao:</label>
+                <input class="form-control" type="text" id="Descricao" name="Descricao" required placeholder="Digite a descricao do produto">
+            </div>
+            <div class="form-group">
+                <label for="Preco">Preco:</label>
+                <input class="form-control" type="text" id="Preco" name="Preco" placeholder="Digite o preco">
+                <small id="emailHelp" class="form-text text-muted">Digite o preco do produto</small>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Cadastrar">
+        </form>
+    </div>
+    <h3>Buscar Produto pelo id</h3>
+    <div style="background-color:mistyrose; width:100%; padding:5px; margin: 20px 0px ;border-radius:5px">
+        <form method="post" action="@Url.Action("GetProduto", "Produto")" class="form-inline">
+            <div class="form-group mx-sm-3 mb-2">
+                <label for="id" class="sr-only">id</label>
+                <input type="number" class="form-control" id="id" name="id" required placeholder="Digite o ID do produto">
+            </div>
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input class="form-control" type="text" id="nome" name="nome" value="@ViewBag.UmProduto" />
+            </div>
+            <div class="form-group">
+                <label for="descricao">Descrição:</label>
+                <input style="max-width:500px" class="form-control" type="text" id="descricao" name="descricao" value="@ViewBag.UmProduto" />
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Buscar Produto</button>
+        </form>
+
+    </div>
+
+
+    <h2>Lista de Produtos Cadastrados</h2>
+    <div style="margin-top: 10px">
+        <table>
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Ação</th>
+            </tr>
+
+            @foreach (ProdutoModel produto in ViewBag.ListaProdutos)
+            {
+                <tr>
+                    <td>@produto.Nome</td>
+                    <td>@produto.Descricao</td>
+
+                    <td>
+                        <form method="post" action="@Url.Action("ExcluirProduto", "Produto")">
+                            <input type="hidden" name="id" value="@produto.Id" />
+                            <button class="btn btn-danger" type="submit">Excluir</button>
+                        </form>
+                        <form method="post" action="@Url.Action("EditarProduto", "Produto")">
+                            <input type="hidden" name="id" value="@produto.Id" />
+                            <input type="hidden" name="nome" value="@produto.Nome" />
+                            <input type="hidden" name="descricao" value="@produto.Descricao" />
+                            <button style="margin-top:8px" class="btn btn-primary" type="submit">Editar</button>
+                        </form>
+                    </td>
+                </tr>
+                @*if (true)
+                    {
+                        <tr>
+                            <td colspan="3">
+                                <form method="post" action="@Url.Action("SalvarEdicaoProduto", "Produto")">
+                                    <input type="hidden" name="id" value="@produto.Id" />
+                                    <label for="nome">Nome:</label>
+                                    <input type="text" id="nome" name="nome" value="@produto.Nome" />
+                                    <br />
+                                    <label for="descricao">Descrição:</label>
+                                    <input type="text" id="descricao" name="descricao" value="@produto.Descricao" />
+                                    <br />
+                                    <button class="btn btn-success" type="submit">Salvar</button>
+                                </form>
+                            </td>
+                        </tr>
+
+                    }*@
+
+            }
+        </table>
+    </div>
+
+
+</body>
+    </html>
